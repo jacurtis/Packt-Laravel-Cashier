@@ -29,9 +29,27 @@
                     <h4>Manage Subscriptions</h4>
 
                     @if (Auth::user()->subscribed('primary'))
-                      <p class="lead">
+                      <p>
                         You are Subscribed!
                       </p>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Invoice Date</th>
+                            <th>Total</th>
+                            <th>Download</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @foreach (Auth::user()->invoices() as $invoice)
+                            <tr>
+                              <td>{{ $invoice->date()->toFormattedDateString() }}</td>
+                              <td>{{ $invoice->total() }}</td>
+                              <td><a href="/user/invoice/{{ $invoice->id }}">Download</a></td>
+                            </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
                       <hr />
                       @if (!Auth::user()->subscription('primary')->onGracePeriod())
                         @if (Auth::user()->subscribedToPlan('yearly', 'primary'))

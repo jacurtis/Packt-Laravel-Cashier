@@ -30,3 +30,4 @@ Route::get('pay/{plan}', 'PaymentsController@pay')->name('pay');
 Route::post('pay/{plan}', 'PaymentsController@pay');
 
 Route::get('cancel', 'PaymentsController@cancel')->name('cancel');
+Route::get('user/invoice/{invoiceId}', 'PaymentsController@invoice');
