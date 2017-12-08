@@ -9873,9 +9873,9 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_instantsearch__["a" /* default */]);
 
 Vue.component('example-component', __webpack_require__(370));
 
-var app = new Vue({
-  el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
 
 /***/ }),
 /* 161 */

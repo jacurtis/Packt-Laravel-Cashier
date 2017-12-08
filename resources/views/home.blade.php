@@ -14,7 +14,37 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <h4>Manage Subscriptions</h4>
+                    {{-- Display the users current subscriptions (or lack thereof) --}}
+
+                    <h5>Subscribe:</h5>
+                    <form action="/your-server-side-code" method="POST">
+                      <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ env('STRIPE_KEY') }}"
+                        data-amount="1000"
+                        data-name="Cashier Inc."
+                        data-description="Monthly Subscription"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto"
+                        data-label="Subscribe Monthly"
+                        data-panel-label="Subscribe">
+                      </script>
+                    </form>
+
+                    <form action="/your-server-side-code" method="POST" style="margin-top:10px;">
+                      <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ env('STRIPE_KEY') }}"
+                        data-amount="10000"
+                        data-name="Cashier Inc."
+                        data-description="Yearly Subscription"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto"
+                        data-label="Subscribe Annually"
+                        data-panel-label="Subscribe">
+                      </script>
+                    </form>
                 </div>
             </div>
         </div>
