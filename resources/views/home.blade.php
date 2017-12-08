@@ -18,7 +18,8 @@
                     {{-- Display the users current subscriptions (or lack thereof) --}}
 
                     <h5>Subscribe:</h5>
-                    <form action="/your-server-side-code" method="POST">
+                    <form action="/pay/monthly" method="POST">
+                      {{ csrf_field() }}
                       <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="{{ env('STRIPE_KEY') }}"
@@ -32,7 +33,8 @@
                       </script>
                     </form>
 
-                    <form action="/your-server-side-code" method="POST" style="margin-top:10px;">
+                    <form action="/pay/yearly" method="POST" style="margin-top:10px;">
+                      {{ csrf_field() }}
                       <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                         data-key="{{ env('STRIPE_KEY') }}"
