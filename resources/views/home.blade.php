@@ -15,17 +15,24 @@
                     @endif
 
                     <h4>Manage Subscriptions</h4>
+                    @if (Auth::user()->subscription('primary')->onGracePeriod())
+                      <div class="alert alert-danger">
+                        You subscription will not renew. You Have canceled, but still have pre-paid time on your subscription.
+                      </div>
+                    @endif
                     @if (Auth::user()->subscribed('primary'))
                       <p class="lead">
                         You are Subscribed!
                       </p>
                       <hr />
-                      @if (Auth::user()->subscribedToPlan('yearly', 'primary'))
-                        <a href="/pay/monthly" class="btn btn-sm btn-info">Downgrade to Monthly</a>
-                      @else
-                        <a href="/pay/yearly" class="btn btn-sm btn-primary">Upgrade to Annual</a>
+                      @if (!Auth::user()->subscription('primary')->onGracePeriod())
+                        @if (Auth::user()->subscribedToPlan('yearly', 'primary'))
+                          <a href="/pay/monthly" class="btn btn-sm btn-info">Downgrade to Monthly</a>
+                        @else
+                          <a href="/pay/yearly" class="btn btn-sm btn-primary">Upgrade to Annual</a>
+                        @endif
+                        <a href="/cancel" class="btn btn-sm btn-danger">Cancel Subscription</a>
                       @endif
-                      <a href="/cancel" class="btn btn-sm btn-danger">Cancel Subscription</a>
                     @else
                       <p class="lead">
                         You are not a subscriber yet!

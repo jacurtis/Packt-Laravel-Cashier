@@ -17,4 +17,11 @@ class PaymentsController extends Controller
     }
     return redirect('/home');
   }
+
+  public function cancel()
+  {
+    Auth::user()->subscription('primary')->cancel();
+
+    return redirect('/home');
+  }
 }
