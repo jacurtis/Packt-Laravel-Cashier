@@ -13,7 +13,7 @@ class PaymentsController extends Controller
     if ($user->subscribed('primary')) {
       $user->subscription('primary')->swap($plan);
     } else {
-      $user->newSubscription('primary', $plan)->create($request->stripeToken);
+      $user->newSubscription('primary', $plan)->trialDays(14)->withCoupon('10off')->create($request->stripeToken);
     }
     return redirect('/home');
   }
