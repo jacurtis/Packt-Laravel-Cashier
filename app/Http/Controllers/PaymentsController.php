@@ -9,8 +9,12 @@ class PaymentsController extends Controller
 {
   public function pay(Request $request, $plan)
   {
-    Auth::user()->newSubscription('primary', $plan)->create($request->stripeToken);
-
+    $user = Auth::user();
+    if ($user->subscribed('primary')) {
+      $user->subscription('primary')->swap($plan);
+    } else {
+      $user->newSubscription('primary', $plan)->create($request->stripeToken);
+    }
     return redirect('/home');
   }
 }

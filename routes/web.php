@@ -26,4 +26,7 @@ Route::resource('/posts', 'PostController');
 Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
 
-Route::post('pay/{plan}', 'PaymentsController@pay')->name('pay');
+Route::get('pay/{plan}', 'PaymentsController@pay')->name('pay');
+Route::post('pay/{plan}', 'PaymentsController@pay');
+
+Route::get('cancel', 'PaymentsController@cancel')->name('cancel');
