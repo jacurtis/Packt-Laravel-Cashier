@@ -11,6 +11,6 @@ class PaymentsController extends Controller
   {
     Auth::user()->newSubscription('primary', $plan)->create($request->stripeToken);
 
-    return "Subscribed!";
+    return redirect('/home');
   }
 }
